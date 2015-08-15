@@ -2,7 +2,14 @@
   "name": "envision",
   "version": "1.0.0",
   "description": "Yet another blog engine, for learning F2E.",
-  "scripts": {
+  "scripts": {},
+  "private": true,
+  "devDependencies": {
+    "browserify": "^11.0.1",
+    "gulp": "^3.9.0",
+    "gulp-stylus": "^2.0.6"
   },
-  "private": true
+  "dependencies": {
+    "jquery": "^2.1.4"
+  }
 }
