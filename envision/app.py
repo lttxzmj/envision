@@ -9,6 +9,7 @@ extensions = [
     'envision.ext:login_manager',
 ]
 blueprints = [
+    'envision.views.index:bp',
 ]
 
 
