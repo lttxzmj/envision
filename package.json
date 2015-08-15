@@ -1,0 +1,8 @@
+{
+  "name": "envision",
+  "version": "1.0.0",
+  "description": "Yet another blog engine, for learning F2E.",
+  "scripts": {
+  },
+  "private": true
+}
