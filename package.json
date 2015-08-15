@@ -11,6 +11,7 @@
     "gulp-stylus": "^2.0.6"
   },
   "dependencies": {
-    "jquery": "^2.1.4"
+    "jquery": "^2.1.4",
+    "nib": "^1.1.0"
   }
 }
