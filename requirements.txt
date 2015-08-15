@@ -11,5 +11,6 @@ flask==0.10.1
 itsdangerous==0.24        # via flask
 jinja2==2.8               # via flask
 markupsafe==0.23          # via jinja2
+python-envcfg==0.1.0
 sqlalchemy==1.0.8         # via flask-sqlalchemy
 werkzeug==0.10.4          # via flask
