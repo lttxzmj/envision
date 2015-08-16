@@ -3,6 +3,7 @@ from __future__ import unicode_literals, absolute_import, print_function
 from uuid import uuid4
 from datetime import datetime
 
+from flask import url_for
 from enum import Enum
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy_utils import UUIDType, ChoiceType
@@ -73,6 +74,10 @@ class Post(db.Model):
     def get_latest_multi(cls, limit=10, status=Status.publish):
         query = cls.query.filter_by(status=status)
         return query.order_by(cls.created_at.desc())[:limit]
+
+    @property
+    def permalink(self):
+        return url_for('index.post', slug=self.slug)
 
     def set_content(self, content, content_type=None):
         self.content = content
