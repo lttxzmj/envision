@@ -8,9 +8,11 @@
     <ul>
         {% for post in posts %}
         <li>
-            {{ post.title }} <br>
-            {{ post.author.email }} <br>
-            {{ post.content }}
+            标题: {{ post.title }} <br>
+            作者: {{ post.author.email }} <br>
+            更新: {{ post.updated_at.strftime('%Y-%m-%d %H:%S') }} <br>
+            创建: {{ post.created_at.strftime('%Y-%m-%d %H:%S') }} <br>
+            {{ post.as_html(max_length=140, ellipsis='…') | safe }}
         </li>
         {% endfor %}
     </ul>

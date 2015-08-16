@@ -5,5 +5,8 @@ flask-script
 python-envcfg
 sqlalchemy-utils
 enum34
+misaka
+html5lib
+html5lib-truncation
 honcho
 ipython

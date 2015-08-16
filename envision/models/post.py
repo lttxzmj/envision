@@ -6,9 +6,19 @@ from datetime import datetime
 from enum import Enum
 from sqlalchemy.orm.exc import NoResultFound
 from sqlalchemy_utils import UUIDType, ChoiceType
+from misaka import html as render_markdown
+from html5lib import HTMLParser, serialize
+from html5lib.sanitizer import HTMLSanitizer
+from html5lib_truncation import truncate_html
 
 from envision.ext import db
 from envision.models.user import User
+
+
+def render_sanitized_html(html):
+    parser = HTMLParser(tokenizer=HTMLSanitizer)
+    etree = parser.parse(html)
+    return serialize(etree)
 
 
 class Post(db.Model):
@@ -22,6 +32,9 @@ class Post(db.Model):
     class ContentType(Enum):
         raw_html = 0
         markdown = 1
+
+    ContentType.raw_html.as_html = render_sanitized_html
+    ContentType.markdown.as_html = render_markdown
 
     uuid = db.Column(UUIDType(), primary_key=True, default=uuid4)
     title = db.Column(db.Unicode(30), nullable=False)
@@ -65,3 +78,10 @@ class Post(db.Model):
         self.content = content
         if content_type:
             self.content_type = content_type
+
+    def as_html(self, max_length=None, ellipsis=''):
+        html = self.content_type.as_html(self.content)
+        if max_length is not None:
+            html = truncate_html(
+                html, max_length, end=ellipsis, break_words=True)
+        return html
