@@ -4,6 +4,7 @@ from datetime import datetime
 
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy.orm.exc import NoResultFound
 
 from envision.ext import db
 
@@ -26,7 +27,10 @@ class User(UserMixin, db.Model):
 
     @classmethod
     def get_by_email(cls, email):
-        return cls.query.filter_by(email=email).first()
+        try:
+            return cls.query.filter_by(email=email).one()
+        except NoResultFound:
+            return
 
     def change_password(self, password):
         self.password = generate_password_hash(password)

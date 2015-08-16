@@ -8,6 +8,7 @@ from flask_script import Manager, prompt_pass
 
 from envision.app import create_app
 from envision.ext import db
+from envision.models.post import Post
 from envision.models.user import User
 
 
@@ -17,7 +18,7 @@ manager = Manager(app)
 
 @manager.shell
 def context():
-    return {'db': db}
+    return {'db': db, 'Post': Post, 'User': User}
 
 
 @manager.command
