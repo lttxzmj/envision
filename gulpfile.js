@@ -15,6 +15,10 @@ var paths = {
     stylesheets: 'envision/static/css',
     scripts: 'envision/static/js',
     root: 'envision/static'
+  },
+  watching: {
+    stylesheets: 'f2e/css/**.styl',
+    scripts: 'f2e/js/**.js',
   }
 };
 
@@ -33,8 +37,8 @@ gulp.task('build:stylesheets', function() {
 });
 
 gulp.task('watch', ['build'], function() {
-  gulp.watch(paths.source.scripts, ['build:scripts'])
-  gulp.watch(paths.source.stylesheets, ['build:stylesheets'])
+  gulp.watch(paths.watching.scripts, ['build:scripts'])
+  gulp.watch(paths.watching.stylesheets, ['build:stylesheets'])
 })
 
 gulp.task('clean', function(cb) {
