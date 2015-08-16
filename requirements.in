@@ -4,5 +4,6 @@ flask-login
 flask-script
 python-envcfg
 sqlalchemy-utils
+enum34
 honcho
 ipython
