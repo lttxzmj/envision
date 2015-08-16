@@ -1,7 +1,8 @@
 var gulp       = require('gulp'),
     stylus     = require('gulp-stylus'),
     browserify = require('browserify'),
-    del        = require('del');
+    del        = require('del'),
+    nib        = require('nib');
 
 var paths = {
   source: {
@@ -32,6 +33,7 @@ gulp.task('build:stylesheets', function() {
   gulp.src(paths.source.stylesheets)
       .pipe(stylus({
         compress: true,
+        use: nib()
       }))
       .pipe(gulp.dest(paths.target.stylesheets))
 });
