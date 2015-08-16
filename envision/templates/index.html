@@ -1,21 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title></title>
-</head>
-<body>
-    <ul>
-        {% for post in posts %}
-        <li>
-            标题: {{ post.title }} <br>
-            作者: {{ post.author.email }} <br>
-            更新: {{ post.updated_at.strftime('%Y-%m-%d %H:%S') }} <br>
-            创建: {{ post.created_at.strftime('%Y-%m-%d %H:%S') }} <br>
-            {{ post.as_html(max_length=140, ellipsis='…') | safe }}
-            <a href="{{ post.permalink }}">[更多]</a>
-        </li>
-        {% endfor %}
+{% extends "layout/base.html" %}
+
+{% block content %}
+  {% for post in posts %}
+  <div class="blog-content">
+    <div class="blog-content-date">
+      {{ post.created_at.strftime('%Y-%m-%d %H:%S') }}
+    </div>
+    <div class="blog-content-title">
+      {{ post.title }}
+    </div>
+    <div class="blog-content-detial">
+      {{ post.as_html(max_length=140, ellipsis='…') | safe }}
+      <a href="{{ post.permalink }}">[更多]</a>
+    </div>
+  </div>
+
+  <div class="blog-share">
+    <ul class="blog-share-detail">
+      <li><i class="fa fa-heart fa-lg"></i>621 LIKES</li>
+      <li><i class="fa fa-share-alt fa-lg"></i>SHARE</li>
     </ul>
-</body>
-</html>
+  </div>
+  {% endfor %}
+{% endblock %}
